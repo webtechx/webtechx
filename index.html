@@ -105,7 +105,7 @@
                         <div class="header-cta">
                             <ul>
                                 <li><a href="#"><i class="icon-location-dot"></i>B/15/H/1, Braunfield Raw, Mominpore, Kolkata 700027</a></li>
-                                <li><a href="mailto:techex@gmail.com"><i class="fal fa-envelope"></i>info.webtechx@gmail.com</a></li>
+                                <li><a href="mailto:info.webtechx@gmail.com"><i class="fal fa-envelope"></i>info.webtechx@gmail.com</a></li>
                                 <li><a href="tel:+913335943426"><i class="fal fa-phone"></i>+91-3335943426</a></li>
                               </ul>
                         </div>
@@ -530,11 +530,11 @@
         <div class="container">
             <div class="funfact-content-grid text-white">
                 <div class="single-funfact-item">
-                    <h3>320 <span>+</span> </h3>
+                    <h3>20 <span>+</span> </h3>
                     <p>Project Completed</p>
                 </div>
                 <div class="single-funfact-item">
-                    <h3>1000 <span>+</span></h3>
+                    <h3>10 <span>+</span></h3>
                     <p>Expert Consultants</p>
                 </div>
                 <div class="single-funfact-item">
@@ -542,7 +542,7 @@
                     <p>5 Stars Rating</p>
                 </div>
                 <div class="single-funfact-item">
-                    <h3>850 <span>+</span></h3>
+                    <h3>50 <span>+</span></h3>
                     <p>Awards Winning</p>
                 </div>
             </div>
@@ -558,10 +558,10 @@
                             <h6><img src="assets/img/banner/bage.svg" alt>Let's Talk With Us</h6>
                             <h2>Free Consultation</h2>
                         </div>
-                        <form action="#">
-                            <input type="text" name="text" class="form-control" placeholder="Full Name">
-                            <input type="email" name="email" class="form-control" placeholder="Email Address">
-                            <textarea name="text" class="form-control" placeholder="Your Message"></textarea>
+                        <form onsubmit="sendMail(event);">
+                            <input type="text" name="fullName" id="fullName" class="form-control" placeholder="Full Name" required>
+                            <input type="email" name="email" id="email" class="form-control" placeholder="Email Address" required>
+                            <textarea name="message" id="message" class="form-control" placeholder="Your Message" required></textarea>
                             <input type="submit" class="form-control" value="Free Consultation">
                         </form>
                     </div>
@@ -1077,9 +1077,33 @@
 
 
 
-
-
-
+    <script>
+        function sendMail(event) {
+            // Prevent form from submitting and refreshing the page
+            event.preventDefault();
+        
+            // Get form values
+            const name = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+        
+            // Basic validation to ensure no fields are empty
+            if (!name || !email || !message) {
+                alert("Please fill out all fields before submitting.");
+                return;
+            }
+        
+            // Create the mailto link with proper URL encoding
+            const mailtoLink = `mailto:info.webtechx@gmail.com?subject=${encodeURIComponent('Consultation Request from ' + name)}&body=${encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nMessage: ' + message)}`;
+        
+            // Show alert (for testing purposes)
+            alert('Redirecting to email client...');
+        
+            // Open the user's email client with prefilled details
+            window.location.href = mailtoLink;
+            setTimeout(() => { window.location.reload(); }, 3000); 
+        }
+        </script>
 
     
 </body>

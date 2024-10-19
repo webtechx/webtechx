@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /private-directory/
+Disallow: /example.html
